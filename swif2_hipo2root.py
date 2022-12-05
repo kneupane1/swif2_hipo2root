@@ -13,10 +13,13 @@ def file_lookup(input_path, total=20000):
     for inp in tqdm(inputs, total=total):
         num = str(inp).split('/')[-2].split("_")[-1]
         job = str(inp).split('/')[-4].split("_")[-1]
-        inps.append({"local": f"{job}_{num}_{inp.name}", "remote": str(inp)})
+        inps.append({"local": f"{job}_{int(num):06d}_{inp.name}", "remote": str(inp)})
     if len(inps) < total:
         print(
             f"Warning: Only found {len(inps)} of {total} expected files!\nMaybe the run isn't done yet.\nCheck before submitting to swif.")
+    inps = sorted(inps, key=lambda d: d['local']) 
+    #for ins in inps:
+    #    print(ins['local'])
     return inps
 
 
@@ -103,7 +106,7 @@ if __name__ == '__main__':
 
     workflow_header['jobs'] = jobs
     with open(f"clas12_hipo2root_{sim_num}.json", "w") as outfile:
-        outfile.write(json.dumps(workflow_header, indent=4))
+        outfile.write(json.dumps(workflow_header))
 
     help_info = f"""
 

@@ -16,6 +16,6 @@ echo "======= dst2root ========="
 
 echo "======= hadd ========="
 mkdir tmp
-/work/clas12/users/tylern/software/root/bin/hadd -j16 -d $PWD/tmp merged.root *.root
+/work/clas12/users/tylern/software/root/bin/hadd -j 16 -d $PWD/tmp merged.root *.root
 echo "======= hadd ========="
 
