@@ -63,7 +63,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     input_path = args.input
-    sim_num = input_path.split("_")[-1]
+    sim_num = input_path.split("_")[-1].split("/")[0]
 
     file_tag = args.tag
 
@@ -89,7 +89,7 @@ if __name__ == '__main__':
 
     input_files = file_lookup(input_path)
     out_path = f"{args.output}/{sim_num}"
-    Path(out_path).mkdir(exist_ok=True)
+    Path(out_path).mkdir(exist_ok=True, parents=True)
     out_file_type = "root"
 
     jobs = []
